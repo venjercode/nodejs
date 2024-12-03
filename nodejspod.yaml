@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: apiVersion: apps/v1
+metadata:
+  name: nodejsapp
+spec:
+  selector:
+    matchLabels:
+      app: nodeapp
+  template:
+    metadata:
+      labels:
+        app: nodeapp
+    spec:
+      containers:
+      - name: nodeserver
+        image: iamsahil84/nodeapp:latest
+        ports:
+        - containerPort: 3000
