@@ -1,0 +1,41 @@
+# Dont need a PV here , as minkube/AWS/cloud does dynamic rovisioning nless something specfic path reqd to put in PV
+---
+# PVC for Master Node
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: master-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+
+--- 
+
+# PVC for Worker Node 1
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: workernode1-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+
+# PVC for Worker Node 2
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: workernode2-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

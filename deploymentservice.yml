@@ -3,22 +3,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodeapp-deployment
+  name: nodejsdeploy
   labels:
-    app: nodeapp
+    app: nodejstest
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nodeapp
+      app: nodejstest
   template:
     metadata:
       labels:
-        app: nodeapp 
+        app: nodejstest 
     spec:
       containers:
       - name: nodeserver
-        image: thetips4you/nodeapp:latest
+        image: iamsahil84/nodeapp:latest
         ports:
         - containerPort: 3000
         
@@ -31,7 +31,7 @@ metadata:
   name: nodeapp-service
 spec:
   selector:
-    app: nodeapp 
+    app: nodejstest
   type: LoadBalancer
   ports:
   - protocol: TCP

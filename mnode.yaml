@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8smaster
+spec:
+  selector:
+    matchLabels:
+      app: master
+  template:
+    metadata:
+      labels:
+        app: master
+    spec:
+      hostNetwork: true  # Use the node's network instead of containers
+      containers:
+      - name: masternode
+        image: centos:latest
+        command: ["/bin/bash", "-c", "--"]    # Keeps container alive
+        args: ["while true; do sleep 30; done;"]  # Infinite loop to prevent container exit
+        volumeMounts:
+        - mountPath: /etc/sysconfig/network-scripts
+          name: master-storage
+      volumes:
+      - name: master-storage
+        persistentVolumeClaim:
+          claimName: master-pvc
